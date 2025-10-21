@@ -1,0 +1,23 @@
+sudo apt update
+sudo apt install -y python3 python3-pip python3-usb python3-serial \
+                    libusb-1.0-0-dev libpcap-dev libffi-dev build-essential \
+                    python3-setuptools python3-venv python3-full libgcrypt20-dev
+          
+# 进入killerbee
+cd /home/vsadmin/killerbee-3.0.0-beta.2     
+  
+# 创建虚拟环境
+python3 -m venv venv
+
+#启用虚拟环境
+source venv/bin/activate
+
+
+pip install --upgrade pip
+pip install setuptools wheel
+pip install "pyusb<1.3" "scapy<2.5" "pyserial" "cryptography<42"
+#卸载scapy, 再安装2.5.0rc1版本
+pip uninstall scapy -y
+pip install scapy==2.5.0rc1
+pip install .
+
